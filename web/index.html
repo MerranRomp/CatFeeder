@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6f5f1">
+<title>CatFeeder · A routine that feels right</title>
+<style>
+:root{--ink:#243329;--muted:#72796f;--paper:#f6f5f1;--card:#fff;--line:#e6e7df;--green:#335c42;--mint:#eaf1e8;--gold:#f5e8c8;--radius:22px}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px;line-height:1.5}button,input{font:inherit}button,a,input{outline-offset:4px}button{cursor:pointer}button:disabled{cursor:default;opacity:.5}a{color:inherit}button{border:0;border-radius:11px;padding:10px 16px;background:var(--mint);color:var(--green);font-weight:650}button:hover{filter:brightness(.96)}button.primary{background:var(--green);color:white}button.quiet{background:transparent;color:var(--muted)}button.remove{padding:6px 11px;background:#f7efec;color:#875349;font-weight:500}input{width:100%;min-height:43px;padding:10px 12px;color:var(--ink);background:#fdfdfa;border:1px solid #dadfd4;border-radius:10px}input:focus{border-color:var(--green);outline:2px solid #dce9dc}label{display:block;font-size:12px;font-weight:650;margin-bottom:7px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(29px,4vw,40px);font-weight:580;line-height:1.18;letter-spacing:-1.4px;margin-bottom:12px}h2{font-size:20px;font-weight:620;letter-spacing:-.5px;margin-bottom:5px}h3{font-size:14px;margin-bottom:4px}p{color:var(--muted)}small,.hint{font-size:12px;color:var(--muted)}.layout{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;border-right:1px solid var(--line);padding:35px 23px;background:#fafaf7}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:21px;font-weight:750;letter-spacing:-.7px}.brand svg{width:33px;height:33px}.workspace{font-size:10px;letter-spacing:1.7px;margin:42px 12px 12px;color:#8d938a;font-weight:650}nav{display:grid;gap:7px}nav a{display:flex;gap:11px;align-items:center;padding:11px 13px;border-radius:11px;text-decoration:none;color:#737c71;font-size:13px}nav a:hover,nav a.active{background:#e9efe4;color:var(--green)}.navicon{font-size:17px;width:19px;text-align:center}.sidefoot{margin-top:auto;border:1px solid var(--line);border-radius:14px;padding:13px;font-size:12px}.sidefoot p{font-size:11px;margin:4px 0 0}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#579264;margin-right:6px}.dot.offline{background:#b77550}.main{max-width:1260px;width:100%;padding:31px 46px 110px;margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:41px;font-size:12px;color:var(--muted)}.breadcrumb strong{color:var(--ink);font-weight:600}.badge{display:inline-flex;align-items:center;padding:5px 10px;background:#e9efe5;border-radius:50px;font-size:11px;font-weight:650;color:var(--green);white-space:nowrap}.badge.demo{background:#f1e8d6;color:#896b32}.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:25px;margin-bottom:29px}.eyebrow{text-transform:uppercase;letter-spacing:1.6px;font-size:10px;color:#899080;font-weight:650;margin-bottom:12px}.hero p{max-width:540px;margin-bottom:0;font-size:13px}.devicepill{border:1px solid var(--line);padding:9px 13px;border-radius:50px;background:white;white-space:nowrap;font-size:12px;margin-top:25px}.notice{display:flex;align-items:flex-start;gap:12px;background:#ecefe5;border:1px solid #e0e6d5;border-radius:14px;padding:14px 17px;margin-bottom:28px;font-size:12px;color:#617159}.notice svg{width:19px;flex-shrink:0}.notice strong{font-weight:650;color:#42553a}.grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,1fr);gap:22px}.stack{display:grid;gap:22px;align-content:start}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:25px 26px}.cardhead{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:21px}.cardhead p{font-size:12px;margin:0}.cardicon{width:38px;height:38px;background:#f1f4eb;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}.fields{display:grid;grid-template-columns:1fr 1fr;gap:18px}.inputunit{position:relative}.inputunit input{padding-right:45px}.inputunit span{position:absolute;right:12px;top:12px;color:#89917f;font-size:12px}.subnote{margin:9px 0 0;font-size:11px}.divider{height:1px;background:var(--line);margin:23px 0}.sectionrow{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:13px}.sectionrow p{font-size:12px;margin:0}.sectionrow button{font-size:12px;padding:7px 12px}.times{display:grid;gap:10px}.timerow{display:flex;align-items:center;gap:12px;background:#f8f9f5;border:1px solid #eef0e7;padding:11px 12px;border-radius:12px}.mealnumber{width:29px;height:29px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#eaf0e3;color:#647458;font-size:11px;font-weight:650;flex-shrink:0}.timerow input{max-width:130px;min-height:35px;background:white}.timerow .remove{margin-left:auto}.empty{border:1px dashed #dfe3d6;padding:22px 14px;border-radius:13px;text-align:center;color:#8a927f;font-size:12px}.microbadge{padding:3px 7px;border-radius:5px;background:#f3efe5;font-size:10px;color:#89744f}.schedulehint{font-size:11px;color:#8a8066;background:#faf7ed;border-radius:9px;padding:10px 12px;margin:14px 0 0}.statuscard{background:#e9efe2;border-color:#dfe7d5;position:relative;overflow:hidden}.statuscard .eyebrow{color:#7c8a70}.statusheadline{font-size:24px;letter-spacing:-.7px;line-height:1.25;font-weight:550;max-width:215px;margin-bottom:12px}.statuscard p{font-size:12px;max-width:220px;color:#758267;margin-bottom:22px}.catdrawing{position:absolute;right:21px;top:32px;width:66px;color:#a8b696}.statusrows{display:grid;gap:12px;border-top:1px solid #d8e2ce;padding-top:17px}.statusrow{display:flex;justify-content:space-between;font-size:12px;color:#7d886f}.statusrow strong{font-weight:600;color:#485f3d;text-transform:capitalize}.catlist{display:grid;gap:12px}.catrow{border:1px solid var(--line);border-radius:14px;padding:14px}.catrowtop{display:flex;align-items:center;gap:9px;margin-bottom:12px}.avatar{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#f0e9db;color:#897b5c;font-size:12px;font-weight:650}.catrowtop .remove{margin-left:auto}.catfields{display:grid;grid-template-columns:1fr 1.25fr;gap:12px}.catfields label{font-size:11px}.catfields input{font-size:12px;min-height:38px}.deviceinfo{display:grid;grid-template-columns:1fr auto;gap:13px;font-size:12px}.deviceinfo dt{color:#8b9384}.deviceinfo dd{margin:0;font-weight:550;text-align:right}.localnote{display:flex;gap:9px;margin:19px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:11px}.savebar{position:sticky;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:24px;padding:15px 19px;border:1px solid var(--line);background:rgba(255,255,253,.96);border-radius:16px;box-shadow:0 8px 25px #263d2810;z-index:2}.savedescription{display:flex;align-items:center;gap:9px;font-size:12px;color:#88907f}.saveactions{display:flex;gap:8px}.footer{margin-top:21px;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.2px;color:#9bA18f}#message{font-size:12px;margin:12px 0 0;min-height:18px;color:var(--green)}#message.error{color:#a0453b}.visuallyhidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}[hidden]{display:none!important}
+@media(max-width:1050px){.layout{grid-template-columns:175px minmax(0,1fr)}.sidebar{padding:30px 15px}.main{padding:28px 28px 90px}.grid{grid-template-columns:1fr}.rightstack{grid-template-columns:1fr 1fr}.statuscard{grid-column:1/-1}.statusheadline{max-width:none}.statuscard p{max-width:80%}.catdrawing{top:28px}.statusrows{grid-template-columns:1fr 1fr;column-gap:25px}}@media(max-width:640px){.layout{display:block}.sidebar{position:static;height:auto;padding:18px 20px;border-right:0;border-bottom:1px solid var(--line);gap:16px}.brand{font-size:19px}.brand svg{width:27px;height:27px}.workspace,.sidefoot{display:none}nav{display:flex;gap:5px;overflow:auto}nav a{padding:8px 11px;white-space:nowrap;font-size:12px}.navicon{display:none}.main{padding:21px 18px 50px}.topbar{margin-bottom:25px}.hero{display:block}.hero p{font-size:12px}.devicepill{display:inline-block;margin-top:15px}.notice{padding:12px;font-size:11px;margin-bottom:20px}.card{padding:21px 18px;border-radius:18px}.grid,.stack{gap:17px}.rightstack{grid-template-columns:1fr}.fields{gap:12px}.catfields{grid-template-columns:1fr}.savebar{bottom:8px;padding:12px;gap:8px}.savedescription{font-size:11px;max-width:45%}.saveactions{gap:3px}.saveactions button{padding:10px 11px;font-size:12px}.statusrows{grid-template-columns:1fr}.footer{font-size:9px}.timerow{gap:8px}.timerow input{max-width:120px}h1{font-size:31px}.catdrawing{width:54px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+ <a class="brand" href="#overview" aria-label="CatFeeder home"><svg viewBox="0 0 36 36" fill="none" aria-hidden="true"><rect width="36" height="36" rx="11" fill="#335c42"/><path d="M10 24V12l6 4h4l6-4v12c-4 4-12 4-16 0Z" stroke="#eef5e5" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 21h.1M22 21h.1M17 25h2" stroke="#eef5e5" stroke-width="2" stroke-linecap="round"/></svg>CatFeeder<span style="color:#abb69d">.</span></a>
+ <div class="workspace">YOUR FEEDER</div>
+ <nav aria-label="Sections"><a class="active" href="#overview"><span class="navicon">◫</span>Overview</a><a href="#feeding"><span class="navicon">◷</span>Feeding plan</a><a href="#cats"><span class="navicon">♡</span>Your cat</a><a href="#device"><span class="navicon">⚙</span>Device</a></nav>
+ <div class="sidefoot"><span class="dot" id="sideDot"></span><strong id="sideConnection">Connecting…</strong><p>Local connection. A little closer to home.</p></div>
+</aside>
+<main class="main" id="overview">
+ <div class="topbar"><span class="breadcrumb">Your feeder <span style="padding:0 9px;color:#b9beaf">/</span> <strong>Overview</strong></span><span class="badge demo" id="modeBadge">Prototype · demo mode</span></div>
+ <header class="hero"><div><div class="eyebrow">SMALL ROUTINES. HAPPY CATS.</div><h1>A routine that feels right.</h1><p>Set the portions, plan the day, and choose who’s welcome.<br>Your feeder’s settings, all in one quiet corner.</p></div><div class="devicepill"><span class="dot" id="connectionDot"></span><span id="connectionLabel">Connecting to feeder…</span></div></header>
+ <div class="notice" role="note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v6m0-10v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><div><strong>A first look at your feeder.</strong> Identification and moving parts are simulated. Gram targets and meal times are saved for setup; automatic meals are not active yet.</div></div>
+ <form id="settingsForm">
+ <div class="grid">
+  <div class="stack">
+   <section class="card" id="feeding"><div class="cardhead"><div><h2>Feeding plan</h2><p>A little structure for every day.</p></div><div class="cardicon" aria-hidden="true">◷</div></div>
+    <div class="fields"><div><label for="portion">Portion target</label><div class="inputunit"><input id="portion" name="portion" type="number" min="0" max="1000" step="0.1" placeholder="Not set" aria-describedby="portionHint"><span>g</span></div><p class="subnote" id="portionHint">Target only. Portion calibration is pending.</p></div><div><label for="interval">Minimum feeding interval</label><div class="inputunit"><input id="interval" name="interval" type="number" min="1" max="86400" step="1" required aria-describedby="intervalHint"><span>sec</span></div><p class="subnote" id="intervalHint">Prevents accidental repeated dispensing.</p></div></div>
+    <div class="divider"></div><div class="sectionrow"><div><h3>Daily meal times <span class="microbadge">Saved plan</span></h3><p>The same simple rhythm, each day.</p></div><button type="button" id="addTime">+ Add time</button></div><div class="times" id="times"></div><p class="schedulehint">Times stay as a draft plan until a reliable clock is configured. No scheduled dispensing runs in this prototype.</p>
+   </section>
+   <section class="card" id="cats"><div class="cardhead"><div><h2>Your cat</h2><p>One familiar face. Their own little routine.</p></div><div class="cardicon" aria-hidden="true">♡</div></div><div class="catlist" id="catList"></div><p class="subnote">Enter your cat’s tag ID manually for now. A physical identification reader has not been connected.</p></section>
+  </div>
+  <div class="stack rightstack">
+   <section class="card statuscard" aria-label="Live feeder status"><div class="eyebrow">RIGHT NOW</div><svg class="catdrawing" viewBox="0 0 80 80" fill="none" aria-hidden="true"><path d="M13 50V15l19 13h16l19-13v35c0 26-54 26-54 0Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M25 45h.1M55 45h.1M36 56h8m-4 0v5m-24-7L4 51m12 10L4 64m60-10 12-3M64 61l12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><div class="statusheadline" id="statusHeadline">Getting to know<br>your feeder.</div><p id="statusDescription">Waiting for the local connection.</p><div class="statusrows"><div class="statusrow"><span>Food access</span><strong id="accessState">—</strong></div><div class="statusrow"><span>Dispenser</span><strong id="dispenseState">—</strong></div><div class="statusrow"><span>Identification</span><strong id="catState">—</strong></div><div class="statusrow"><span>Automatic meals</span><strong>Not active</strong></div></div></section>
+   <section class="card" id="device"><div class="cardhead"><div><h2>At home, offline</h2><p>Your feeder hosts this page.</p></div></div><dl class="deviceinfo"><dt>Network</dt><dd id="ssid">—</dd><dt>Local address</dt><dd id="address">192.168.4.1</dd><dt>Uptime</dt><dd id="uptime">—</dd><dt>Portion calibration</dt><dd>Pending</dd></dl><p class="localnote"><span aria-hidden="true">⌂</span><span>Settings are saved on the feeder. An internet connection isn’t needed.</span></p></section>
+  </div>
+ </div>
+ <div class="savebar"><div class="savedescription"><span class="dot" id="saveDot"></span><span id="saveState">Loading your settings…</span></div><div class="saveactions"><button type="button" class="quiet" id="discard" disabled>Discard</button><button type="submit" class="primary" id="save" disabled>Save changes <span aria-hidden="true">↗</span></button></div></div><div id="message" role="status" aria-live="polite"></div>
+ </form>
+ <footer class="footer"><span>CATFEEDER · A SCHOOL MECHATRONICS PROJECT</span><span>A little care, every day.</span></footer>
+</main>
+</div>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const preview = new URLSearchParams(location.search).has('preview');
+const storageKey = 'catfeeder-ui-preview-v1';
+const defaultSettings = () => ({schemaVersion:1,revision:0,portionGrams:0,minimumFeedIntervalSeconds:5,feedingTimes:[],cats:[{name:'Demo cat',tag:'mock-cat'}]});
+let saved, draft, connected = false, saving = false;
+const clone = value => JSON.parse(JSON.stringify(value));
+function message(text, error=false){$('message').textContent=text;$('message').classList.toggle('error',error)}
+function dirty(){return !!saved && JSON.stringify(draft)!==JSON.stringify(saved)}
+function controls() {
+  const changed = dirty();
+  $('save').disabled = !connected || !changed || saving;
+  $('discard').disabled = !changed || saving;
+  for (const input of document.querySelectorAll('input, .remove')) input.disabled = saving;
+  $('addTime').disabled = saving || !draft || draft.feedingTimes.length >= 6;
+  $('saveState').textContent = saving ? 'Saving on your feeder…' : changed ? 'You have unsaved changes' : preview ? 'Preview settings · saved in this browser' : 'All changes saved on your feeder';
+  $('saveDot').classList.toggle('offline', changed);
+}
+function inputField(label,value,onchange,maxLength){const wrapper=document.createElement('div');const name=document.createElement('label');const input=document.createElement('input');input.type='text';input.value=value;input.required=true;input.maxLength=maxLength;name.textContent=label;const id='field-'+cryptoSafeId();name.htmlFor=id;input.id=id;input.addEventListener('input',()=>{onchange(input.value);controls()});wrapper.append(name,input);return wrapper}
+let fieldNumber=0;function cryptoSafeId(){return ++fieldNumber}
+function removeButton(label,handler){const button=document.createElement('button');button.type='button';button.className='remove';button.textContent='Remove';button.setAttribute('aria-label',label);button.addEventListener('click',handler);return button}
+function renderTimes(){const container=$('times');container.replaceChildren();if(!draft.feedingTimes.length){const empty=document.createElement('div');empty.className='empty';empty.textContent='A blank slate. Add the first time when you’re ready.';container.append(empty)}draft.feedingTimes.forEach((time,index)=>{const row=document.createElement('div');row.className='timerow';const number=document.createElement('span');number.className='mealnumber';number.textContent=String(index+1).padStart(2,'0');const input=document.createElement('input');input.type='time';input.value=time;input.required=true;input.setAttribute('aria-label','Meal '+(index+1)+' time');input.addEventListener('input',()=>{draft.feedingTimes[index]=input.value;controls()});row.append(number,input,removeButton('Remove meal '+(index+1),()=>{draft.feedingTimes.splice(index,1);renderTimes();controls()}));container.append(row)});$('addTime').disabled=draft.feedingTimes.length>=6}
+function renderCats() {
+  const container = $('catList');
+  container.replaceChildren();
+  const cat = draft.cats[0] || {name:'', tag:''};
+  const row = document.createElement('div');
+  row.className = 'catrow';
+  const top = document.createElement('div');
+  top.className = 'catrowtop';
+  const avatar = document.createElement('span');
+  avatar.className = 'avatar';
+  const title = document.createElement('strong');
+  const updateName = value => {
+    cat.name = value;
+    title.textContent = value || 'Your cat';
+    avatar.textContent = value.trim().slice(0,1).toUpperCase() || '♡';
+  };
+  updateName(cat.name);
+  top.append(avatar, title);
+  const fields = document.createElement('div');
+  fields.className = 'catfields';
+  fields.append(
+    inputField('Name', cat.name, value => { updateName(value); draft.cats = [cat]; }, 32),
+    inputField('Tag ID', cat.tag, value => { cat.tag = value; draft.cats = [cat]; }, 64)
+  );
+  row.append(top, fields);
+  container.append(row);
+}
+function render(){ $('portion').value=draft.portionGrams||'';$('interval').value=draft.minimumFeedIntervalSeconds;renderTimes();renderCats();controls() }
+function connection(isConnected){connected=isConnected;$('connectionLabel').textContent=isConnected?(preview?'Browser preview':'Connected locally'):'Feeder offline';$('sideConnection').textContent=isConnected?(preview?'Preview mode':'Connected locally'):'Connection lost';for(const id of ['sideDot','connectionDot'])$(id).classList.toggle('offline',!isConnected);controls()}
+async function request(path,options={}){const response=await fetch(path,{cache:'no-store',...options});let body;try{body=await response.json()}catch{throw new Error('The feeder returned an unreadable response.')}if(!response.ok)throw new Error(body.error||'The feeder could not complete this request.');return body}
+function showStatus(status){$('accessState').textContent=status.access;$('dispenseState').textContent=status.dispensing;$('catState').textContent=status.recognized?'Recognized':'Waiting';$('ssid').textContent=status.ssid;$('address').textContent=status.address;$('uptime').textContent=Math.floor(status.uptimeSeconds/60)+' min';let title='Ready for a familiar face.',description='Your feeder is waiting. All moving parts are simulated.';if(!status.settingsValid){title='Let’s check your settings.';description='Stored configuration needs attention. Save valid settings to recover.'}else if(status.access==='fault'||status.dispensing==='fault'){title='A little attention needed.';description='An operation faulted. Check the serial status before restarting the demo.'}else if(status.dispensing==='running'){title='A portion in progress.';description='A mock dispensing operation is running.'}else if(status.access==='running'){title='Making a little room.';description='A mock access operation is running.'}else if(status.recognized){title='A familiar face is here.';description='An authorized mock cat is recognized.'}$('statusHeadline').textContent=title;$('statusDescription').textContent=description;if(status.pendingSettings&&!dirty())$('saveState').textContent='Saved · applying after the active operation';if(saved&&status.revision!==saved.revision&&!saving)message('Settings changed in another session. Reload the page before saving.',true)}
+async function poll(){try{const status=preview?{access:'idle',dispensing:'idle',recognized:false,ssid:'CatFeeder · preview',address:'Local preview',uptimeSeconds:0,settingsValid:true,pendingSettings:false,revision:saved?.revision||0}:await request('/api/status');connection(true);showStatus(status)}catch{connection(false);$('statusHeadline').textContent='Waiting for your feeder.';$('statusDescription').textContent='Reconnect to the CatFeeder Wi-Fi network. Your unsaved edits stay here.'}finally{setTimeout(poll,2500)}}
+function validate(){if(draft.feedingTimes.some(time=>!/^([01]\d|2[0-3]):[0-5]\d$/.test(time)))throw new Error('Choose a valid time for each meal.');if(new Set(draft.feedingTimes).size!==draft.feedingTimes.length)throw new Error('Choose different times for each meal.');if(draft.cats.some(cat=>!cat.name.trim()||!cat.tag.trim()))throw new Error('Each cat needs a name and tag ID.');if(new Set(draft.cats.map(cat=>cat.tag)).size!==draft.cats.length)throw new Error('Each cat needs a unique tag ID.');}
+$('portion').addEventListener('input',()=>{if(draft){draft.portionGrams=Number($('portion').value);controls()}});
+$('interval').addEventListener('input',()=>{if(draft){draft.minimumFeedIntervalSeconds=Number($('interval').value);controls()}});
+$('addTime').addEventListener('click',()=>{if(draft&&draft.feedingTimes.length<6){draft.feedingTimes.push('');renderTimes();controls();$('times').lastElementChild.querySelector('input').focus()}});
+$('discard').addEventListener('click',()=>{draft=clone(saved);render();message('Unsaved changes discarded.')});
+$('settingsForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  if (saving || !connected || !saved) return;
+  try {
+    validate();
+    saving = true;
+    controls();
+    // Capture exactly what is submitted. Failed saves must not reorder the form.
+    const candidate = clone(draft);
+    candidate.feedingTimes.sort();
+    let revision;
+    if (preview) {
+      revision = saved.revision + 1;
+      localStorage.setItem(storageKey, JSON.stringify({...candidate, revision}));
+    } else {
+      const result = await request('/api/settings', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json', 'X-CatFeeder-Request':'configuration'},
+        body: JSON.stringify(candidate)
+      });
+      revision = result.revision;
+    }
+    candidate.revision = revision;
+    saved = clone(candidate);
+    draft = clone(candidate);
+    message(preview ? 'Preview saved in this browser. The ESP32 has not been changed.' : 'Settings saved on your feeder. Meal automation and gram calibration remain pending.');
+    render();
+  } catch (error) {
+    message(error.message, true);
+  } finally {
+    saving = false;
+    controls();
+  }
+});
+window.addEventListener('beforeunload',event=>{if(dirty()){event.preventDefault();event.returnValue=''}});
+async function boot(){try{if(preview){$('modeBadge').textContent='Browser preview · device unchanged';let stored;try{stored=JSON.parse(localStorage.getItem(storageKey))}catch{}saved=stored&&stored.schemaVersion===1?stored:defaultSettings()}else saved=await request('/api/settings');saved.cats=saved.cats.slice(0,1);draft=clone(saved);connection(true);render();poll()}catch(error){connection(false);message(error.message+' Reload after reconnecting.',true);$('addTime').disabled=true;}}
+boot();
+</script>
+</body>
+</html>
